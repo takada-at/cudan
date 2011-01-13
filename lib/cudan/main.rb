@@ -26,7 +26,7 @@ class Cudan::Main
             puts opts.to_s
             exit
         end
-        if /\/(.*)\// =~ @query
+        if /^\/(.*)\/$/ =~ @query
             klass = Cudan::RegexpCudan
             @query = $~[1]
         else
