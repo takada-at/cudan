@@ -11,10 +11,11 @@ GEMSPEC = Gem::Specification::new do |s|
     s.required_ruby_version = '>= 1.8.6'
     s.executables = ['cudan']
     s.default_executable = 'cudan'
+	s.add_dependency 'nokogiri'
     s.files = Dir::glob("{lib,bin,test}/**/*") + ['README', 'CHANGES']
     s.has_rdoc = false
     s.homepage = 'http://github.com/takada-at/cudan'
-    s.rubyforge_project = ''
+    s.rubyforge_project = 'cudan'
     s.description = <<EOF
 simple functinal test tool
 EOF
