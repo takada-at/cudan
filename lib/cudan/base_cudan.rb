@@ -37,6 +37,7 @@ module Cudan
             end
         end
         def execute query, expect, url, method=GET, body=nil
+            @query = query
             fetch(url, method, body)
             @query_result = do_query(query)
             r = do_expect(expect)
@@ -48,6 +49,7 @@ module Cudan
         end
         def do_message
             Logger.log 'failure:'
+            Logger.log "query: #{@query}"
             Logger.log @query_result.gsub(/^(.*)$/){|r| "\t" + r}
         end
         def do_query query
