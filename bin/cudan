@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+begin
+    require 'cudan'
+rescue LoadError
+    require 'rubygems'
+    require 'cudan'
+end
+Cudan::Main::new::main
