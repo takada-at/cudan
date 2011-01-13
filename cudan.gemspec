@@ -13,9 +13,9 @@ GEMSPEC = Gem::Specification::new do |s|
     s.default_executable = 'cudan'
     s.files = Dir::glob("{lib,bin,test}/**/*") + ['README', 'CHANGES']
     s.has_rdoc = false
-    s.homepage = ''
+    s.homepage = 'http://github.com/takada-at/cudan'
     s.rubyforge_project = ''
     s.description = <<EOF
-functinal test tool
+simple functinal test tool
 EOF
 end
