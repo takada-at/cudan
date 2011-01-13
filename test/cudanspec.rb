@@ -23,7 +23,12 @@ WW::Server[:server] ||= WW::Server::build_double(port) do
     }
 end
 WW::Server.start_once
+RSpec.configure {|c| c.mock_with :mocha}
+
 describe Cudan::RegexpCudan, 'request for localhost' do
+    before(:each) do
+        Cudan::Logger::stubs(:log).returns nil
+    end
     it 'should raise no error with regexp' do
         url = baseurl + '/regexp'
         o = Cudan::RegexpCudan::new
@@ -33,6 +38,9 @@ describe Cudan::RegexpCudan, 'request for localhost' do
     end
 end
 describe Cudan::XpathCudan, 'request for localhost' do
+    before(:each) do
+        Cudan::Logger::stubs(:log).returns nil
+    end
     it 'should raise no error with xpath' do
         url = baseurl + '/xpath'
         o = Cudan::XpathCudan::new

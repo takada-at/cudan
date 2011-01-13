@@ -6,15 +6,14 @@ module Cudan
             @result = @doc.search(query)
             @result = @result[0]
             if @result.is_a? Nokogiri::XML::Text
-                return @result.content
+                return @result.content.to_s
             elsif @result
-                @result.inner_html
+                return @result.inner_html.to_s
             else
-                ''
+                return ''
             end
         end
         def do_expect expect
-            p @query_result
             @query_result.include? expect
         end
     end

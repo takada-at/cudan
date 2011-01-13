@@ -5,13 +5,21 @@ module Cudan
     PUT="PUT"
     DELETE="DELETE"
     class BaseCudan
+        def initialize
+            @headers = {}
+            @showbody = false
+        end
+        attr_accessor :showbody
+        def set_header key, value
+            @headers[key] = value
+        end
         def fetch url, method=GET, body=nil
             host, port, path = Util::parse_url(url)
             @post_string = body
             if method == GET
-                req = Net::HTTP::Get::new(path, @header)
+                req = Net::HTTP::Get::new(path, @headers)
             elsif method == POST
-                req = Net::HTTP::Post::new(path, @header)
+                req = Net::HTTP::Post::new(path, @headers)
             end
             response = nil
             Net::HTTP.start(host, port) do |http|
@@ -23,6 +31,9 @@ module Cudan
                 @response = response.body.to_s
             else
                 @response = ''
+            end
+            if @showbody
+                Logger.log(@response, 2)
             end
         end
         def execute query, expect, url, method=GET, body=nil
@@ -36,9 +47,8 @@ module Cudan
             end
         end
         def do_message
-            puts 'failure:'
-            puts @query_result.gsub(/^(.*)$/){|r| "\t" + r}
-            puts @query_result
+            Logger.log 'failure:'
+            Logger.log @query_result.gsub(/^(.*)$/){|r| "\t" + r}
         end
         def do_query query
             @response.include? query ? query : ''

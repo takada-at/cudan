@@ -1,4 +1,5 @@
 require 'rubygems'
+$LOAD_PATH << File::join(File::dirname(__FILE__), 'lib')
 require 'lib/cudan'
 GEMSPEC = Gem::Specification::new do |s|
     s.name = 'cudan'
@@ -10,7 +11,7 @@ GEMSPEC = Gem::Specification::new do |s|
     s.required_ruby_version = '>= 1.8.6'
     s.executables = ['cudan']
     s.default_executable = 'cudan'
-    s.files = Dir::glob("{lib,bin,test}/**/*") + ['cudan', 'README', 'CHANGES']
+    s.files = Dir::glob("{lib,bin,test}/**/*") + ['README', 'CHANGES']
     s.has_rdoc = false
     s.homepage = ''
     s.rubyforge_project = ''

@@ -3,7 +3,6 @@ module Cudan
         def do_query query
             regexp = Regexp::new(query)
             @matched = regexp.match(@response)
-            p @matched.to_a
             if @matched
                 @matched[0]
             else
